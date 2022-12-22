@@ -1,12 +1,12 @@
 const express=require("express");
 const cors=require("cors");
-const { userRoute } = require("./routes/user.route.js");
+const { userRoute } = require("./routes/user.route");
 const { connection } = require("./config/db");
-const { blogRoute } = require("./routes/blog.route.js");
-const { commentRoute } = require("./routes/comment.route.js");
-const { bookmarkRoute } = require("./routes/bookmark.route.js");
-const { likeRoute } = require("./routes/like.route.js");
-const { followerRoute } = require("./routes/follower.route.js");
+const { blogRoute } = require("./routes/blog.route");
+const { commentRoute } = require("./routes/comment.route");
+const { bookmarkRoute } = require("./routes/bookmark.route");
+const { likeRoute } = require("./routes/like.route");
+const { followerRoute } = require("./routes/follower.route");
 require("dotenv").config()
 const PORT=process.env.PORT||8081
 

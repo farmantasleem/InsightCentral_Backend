@@ -6,6 +6,6 @@ const bookmarkSchema=mongoose.Schema({
 })
 
 
-const Bookmarkmodel=mongoose.model("bookmark",bookmarkSchema);
+const Bookmarkmodel=mongoose.model("follower",bookmarkSchema);
 
 module.exports={Bookmarkmodel}
