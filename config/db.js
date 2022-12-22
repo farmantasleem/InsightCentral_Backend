@@ -1,10 +1,14 @@
-const mongoose=require("mongoose");
-require("dotenv").config()
+const mongoose = require("mongoose");
+
 const connectDatabase = () => {
   mongoose
-    .connect("mongodb+srv://r:Farman@cluster0.ksgue.mongodb.net/insightcentral?retryWrites=true&w=majority")
-    
-    
+    .connect(process.env.DB_URL, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    })
+    .then((data) => {
+      console.log(`Mongodb connected with server: ${data.connection.host}`);
+    });
 };
 
 module.exports = connectDatabase;
