@@ -2,7 +2,9 @@ const express=require("express");
 const bcrypt=require("bcryptjs");
 const { Usermodel } = require("../models/user.model");
 const userRoute=express.Router();
-const JWT=require("jsonwebtoken")
+const JWT=require("jsonwebtoken");
+const { Authentication } = require("../middlewares/Authentication");
+const { Blogmodel } = require("../models/blog.model");
 
 //Sign Up
 
@@ -50,6 +52,18 @@ userRoute.post("/login",async(req,res)=>{
 
     }else{
         res.status(404).send({msg:"All fields are required"})
+    }
+})
+
+//User all blog
+
+userRoute.get("/myblog",Authentication,async(req,res)=>{
+    const userid=req.body.userid
+    try{
+        const myBlog=await Blogmodel.find({author:userid}) 
+        res.status(200).send(myBlog)
+    }catch(err){
+        res.status(500).send({msg:err.message})
     }
 })
 
