@@ -9,7 +9,7 @@ const { likeRoute } = require("./routes/like.route");
 const { followerRoute } = require("./routes/follower.route");
 const connectDatabase = require("./config/db");
 require("dotenv").config()
-const PORT=process.env.PORT||8081
+const PORT=process.env.PORT||3001
 
 const app=express();
 app.use(express.json())
