@@ -2,7 +2,7 @@ const JWT=require("jsonwebtoken")
 const Authentication=async(req,res,next)=>{
     const token=req.headers?.authorization?.split(" ")[1];
     if(token?.length>1){
-        const decoded=await JWT.verify(token,process.env.JWT_SECRET);
+        const decoded=await JWT.verify(token,"NOTHINGISSECRET");
         if(decoded){
             const userid=decoded.userid;
             req.body.userid=userid;

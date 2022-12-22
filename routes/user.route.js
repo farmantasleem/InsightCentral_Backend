@@ -35,7 +35,7 @@ userRoute.post("/login",async(req,res)=>{
             if(userDetails?.name.length>0){
             const isMatch=await bcrypt.compare(password,userDetails.password);
             if(isMatch){
-                const token=await JWT.sign({userid:userDetails._id},process.env.JWT_SECRET)
+                const token=await JWT.sign({userid:userDetails._id},"NOTHINGISSECRET")
                 res.status(200).send({msg:"Success",token})
             }else{
                 res.status(404).send({msg:"Authentication Failed"})
