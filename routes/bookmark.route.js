@@ -1,5 +1,5 @@
 const express=require("express");
-const { Authentication } = require("../middlewares/authentication");
+const { Authentication } = require("../middlewares/Authentication");
 const { Bookmarkmodel } = require("../models/bookmark.model");
 
 const bookmarkRoute=express.Router();
