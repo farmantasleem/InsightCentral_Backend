@@ -26,6 +26,8 @@ bookmarkRoute.post("/:blogid",Authentication,async(req,res)=>{
 
     try{
         const newBookmark=await Bookmarkmodel({blog:blog,by:userid})
+        await newBookmark.save();
+        res.status(200).send({msg:"Added to bookmark"})
 
     }catch(err){
         res.status(500).send({msg:err.message})

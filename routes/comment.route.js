@@ -22,7 +22,7 @@ commentRoute.get("/:id",async(req,res)=>{
 commentRoute.post("/:id",Authentication,async(req,res)=>{
     const blogid=req.params.id;
     const userid=req.body.userid
-    const {comment}=req.body?.comment;
+    const {comment}=req.body
     if(comment){
         try{
             const newBlog=await Commentmodel({...req.body,blog:blogid,by:userid})
