@@ -32,7 +32,8 @@ blogRoute.get("/",async(req,res)=>{
     const blog=req.params
     try{
         const blogData=await Blogmodel.find(blog).skip(skipdata||0).limit(9)    //pagination
-        res.status(200).send(blogData)      //sending blogs data
+        const allBlogs=await Blogmodel.countDocuments()
+        res.status(200).send({data:blogData,total:allBlogs})      //sending blogs data
 
     }catch(err){
         res.status(404).send({msg:err.message})
