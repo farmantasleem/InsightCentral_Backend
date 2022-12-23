@@ -27,7 +27,7 @@ blogRoute.post("/",Authentication,async(req,res)=>{
 //Getting blogs
 
 blogRoute.get("/",async(req,res)=>{
-    const {page}=req.body;
+    const {page}=req.query;
     const skipdata=(page-1)*9              //data to be skip
     const blog=req.params
     try{
