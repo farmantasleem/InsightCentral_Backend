@@ -82,4 +82,16 @@ userRoute.patch("/user",Authentication,async(req,res)=>{
     }
 })
 
+//profile page
+
+userRoute.get("/profile",Authentication,async(req,res)=>{
+    const userid=req.body.userid;
+    try{
+        const userDetails=await Usermodel.findOne({_id:userid});
+        res.status(200).send(userDetails)
+    }catch(err){
+        res.status(400).send({err:err.message})
+    }
+})
+
 module.exports={userRoute}
