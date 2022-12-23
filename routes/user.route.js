@@ -5,6 +5,7 @@ const userRoute=express.Router();
 const JWT=require("jsonwebtoken");
 const { Authentication } = require("../middlewares/Authentication");
 const { Blogmodel } = require("../models/blog.model");
+const { AutoEncryptionLoggerLevel } = require("mongodb");
 
 //Sign Up
 
@@ -64,6 +65,20 @@ userRoute.get("/myblog",Authentication,async(req,res)=>{
         res.status(200).send(myBlog)
     }catch(err){
         res.status(500).send({msg:err.message})
+    }
+})
+
+//Update userinfo;
+
+userRoute.patch("/user",Authentication,async(req,res)=>{
+    const userid=req.body.userid;
+
+    try{
+        await Usermodel.findOneAndUpdate({_id:userid},{...req.body})
+        res.status(200).send({msg:"Updated Successfully"})
+    }
+    catch(err){
+        res.status(200).send({msg:err.message})
     }
 })
 
