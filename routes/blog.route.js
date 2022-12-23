@@ -31,8 +31,9 @@ blogRoute.get("/",async(req,res)=>{
     const skipdata=(page-1)*9              //data to be skip
     const blog=req.params
     try{
-        const blogData=await Blogmodel.find(blog).skip(skipdata||0).limit(9)    //pagination
         const allBlogs=await Blogmodel.countDocuments()
+        const blogData=await Blogmodel.find(blog).skip(skipdata||0).limit(page?9:allBlogs)    //pagination
+       
         res.status(200).send({data:blogData,total:allBlogs})      //sending blogs data
 
     }catch(err){
