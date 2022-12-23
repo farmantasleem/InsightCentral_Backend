@@ -94,4 +94,13 @@ userRoute.get("/profile",Authentication,async(req,res)=>{
     }
 })
 
+userRoute.get("/author/:id",async(req,res)=>{
+    const userid=req.params.id;
+    try{
+        const userDetails=await Usermodel.findOne({_id:userid});
+        res.status(200).send({"img":userDetails.img,"bio":userDetails.bio,"author":userDetails.name})
+    }catch(err){
+        res.status(400).send({err:err.message})
+    }
+})
 module.exports={userRoute}
