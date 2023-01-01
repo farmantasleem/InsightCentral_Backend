@@ -32,7 +32,7 @@ blogRoute.get("/",async(req,res)=>{
     const blog=req.params
     try{
         const allBlogs=await Blogmodel.countDocuments()
-        const blogData=await Blogmodel.find(blog).skip(skipdata||0).limit(page?9:allBlogs).populate("author")  //pagination
+        const blogData=await Blogmodel.find(blog).sort([{date:-1}]).skip(skipdata||0).limit(page?9:allBlogs).populate("author")  //pagination
        
         res.status(200).send({data:blogData,total:allBlogs})      //sending blogs data
 
